@@ -10,7 +10,7 @@ use Braspag\Address;
 use Braspag\Braspag;
 use Braspag\Payment;
 use Braspag\Customer;
-use HttpFull\Request;
+use Httpfull\Request;
 use Braspag\HttpStatus;
 use Braspag\VoidResponse;
 use Braspag\BoletoPayment;

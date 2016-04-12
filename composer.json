@@ -15,7 +15,8 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "nategood/httpful": "^0.2.20"
     },
     "autoload": {
         "psr-4": { "Braspag\\" : "src/" }
