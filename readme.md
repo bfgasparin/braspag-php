@@ -2,7 +2,9 @@
 
 Braspag Binding classes to intermediate the communication to Braspag REST API.
 
-This classes falicitates the integration to Braspag Payment System.
+This package make integration to Braspag Payment System easier.
+
+Braspag PHP Binding is strongly based on [Braspag/BraspagApiPHPSdk][1].
 
 ## Requirements:
 
@@ -22,3 +24,5 @@ To use the bindings, use Composer's autoload:
 ## Getting Started
 
 @todo
+
+[1]: https://github.com/Braspag/BraspagApiPhpSdk
