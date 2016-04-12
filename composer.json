@@ -1,0 +1,30 @@
+{
+    "name": "braspag/braspag-php",
+    "description": "Braspag Binding",
+    "keywords": [
+        "braspag",
+        "payment",
+        "api"
+    ],
+    "homepage": "http://www.braspag.com.br/",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Bruno Ferme Gasparin",
+            "email": "bfgasparin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "autoload": {
+            "psr-4": { "Braspag\\" : "src/" }
+          },
+    },
+    "extra": {
+        "branch-alias": {
+          "dev-master": "2.0-dev"
+        }
+    }
+}
