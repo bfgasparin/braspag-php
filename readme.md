@@ -1,12 +1,14 @@
 # Braspag PHP Binding
 
-SDK to facilitate the use of Braspag API.
+Braspag Binding classes to intermediate the communication to Braspag REST API.
+
+This classes falicitates the integration to Braspag Payment System.
 
 ## Requirements:
 
 - PHP 5.3.3 and later.
 
-# Composer
+## Composer
 
 You can install the Braspag bindings via Composer. Run the following command:
 
