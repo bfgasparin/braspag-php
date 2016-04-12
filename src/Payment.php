@@ -27,7 +27,7 @@ class Payment
     public $recurrentPayment;
     
     public function __construct(){
-        $this->country = BraspagApiConfig::defaultCountry;
-        $this->currency = BraspagApiConfig::defaultCurrency;
+        $this->country = Braspag::$defaultCountry;
+        $this->currency = Braspag::$defaultCurrency;
     }
 }

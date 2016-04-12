@@ -18,7 +18,7 @@ class FraudAnalysis {
     public $replyData;
 
     public function __construct(){
-        $this->sequence = BraspagApiConfig::defaultSequence;
-        $this->sequenceCriteria = BraspagApiConfig::defaultSequenceCriteria;
+        $this->sequence = Braspag::$defaultSequence;
+        $this->sequenceCriteria = Braspag::$defaultSequenceCriteria;
     }
 }

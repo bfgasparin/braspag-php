@@ -21,8 +21,8 @@ class CreditCardPayment extends Payment
     
     public function __construct(){
         $this->type = "CreditCard";
-        $this->authenticate = BraspagApiConfig::defaultAuthenticate;
-        $this->capture = BraspagApiConfig::defaultCapture;
-        $this->interest = BraspagApiConfig::defaultInterest;
+        $this->authenticate = Braspag::$defaultAuthenticate;
+        $this->capture = Braspag::$defaultCapture;
+        $this->interest = Braspag::$defaultInterest;
     }
 }

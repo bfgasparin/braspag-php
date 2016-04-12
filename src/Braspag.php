@@ -4,17 +4,17 @@ namespace Braspag;
 
 class Braspag
 {
-    public static merchantId;
-    public static merchantKey;
-	public static apiBase = 'https://braspag.com.br/v2/';
-    public static apiQueryBase = 'https://apiquery.braspag.com.br/v2/';
-    public static defaultCurrency = 'BRL';
-    public static defaultCountry = 'BRA';
-    public static defaultInterest = 'ByMerchant';
-    public static defaultCapture = false;
-    public static defaultAuthenticate = false;
-    public static defaultSequence = "AuthorizeFirst";
-    public static defaultSequenceCriteria = "OnSuccess";
+    public static $merchantId;
+    public static $merchantKey;
+	public static $apiBase = 'https://braspag.com.br/v2/';
+    public static $apiQueryBase = 'https://apiquery.braspag.com.br/v2/';
+    public static $defaultCurrency = 'BRL';
+    public static $defaultCountry = 'BRA';
+    public static $defaultInterest = 'ByMerchant';
+    public static $defaultCapture = false;
+    public static $defaultAuthenticate = false;
+    public static $defaultSequence = "AuthorizeFirst";
+    public static $defaultSequenceCriteria = "OnSuccess";
 
     /**
      * @return string The MerchantId used for requests.

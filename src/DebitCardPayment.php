@@ -15,8 +15,8 @@ class DebitCardPayment extends Payment
     
     public function __construct(){
         $this->type = "DebitCard";
-        $this->authenticate = BraspagApiConfig::defaultAuthenticate;
-        $this->capture = BraspagApiConfig::defaultCapture;
-        $this->interest = BraspagApiConfig::defaultInterest;
+        $this->authenticate = Braspag::$defaultAuthenticate;
+        $this->capture = Braspag::$defaultCapture;
+        $this->interest = Braspag::$defaultInterest;
     }
 }
