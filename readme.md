@@ -10,7 +10,7 @@ SDK to facilitate the use of Braspag API.
 
 You can install the Braspag bindings via Composer. Run the following command:
 
-	$ composer require braspag/braspag-php
+	$ composer require bfgasparin/braspag-php
 
 To use the bindings, use Composer's autoload:
 
