@@ -18,9 +18,7 @@
         "php": ">=5.3.3"
     },
     "autoload": {
-        "autoload": {
-            "psr-4": { "Braspag\\" : "src/" }
-          },
+        "psr-4": { "Braspag\\" : "src/" }
     },
     "extra": {
         "branch-alias": {
