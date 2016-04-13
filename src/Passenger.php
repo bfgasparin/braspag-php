@@ -2,7 +2,8 @@
 
 namespace Braspag;
 
-class Passenger {
+class Passenger extends Model
+{
 
 	public $email;
 	public $identity;

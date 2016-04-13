@@ -7,7 +7,7 @@ namespace Braspag;
  *
  * @version 1.0
  */
-class RecurrentPayment
+class RecurrentPayment extends Model
 {
     public $recurrentPaymentId;
     public $reasonCode;

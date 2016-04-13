@@ -5,17 +5,12 @@ namespace Braspag\Http;
 use Braspag\Card;
 use Braspag\Link;
 use Braspag\Sale;
-use Braspag\Utils;
 use Braspag\Address;
 use Braspag\Braspag;
 use Braspag\Payment;
 use Braspag\Customer;
 use Httpful\Request;
-use Braspag\HttpStatus;
-use Braspag\VoidResponse;
 use Braspag\BoletoPayment;
-use Braspag\CaptureRequest;
-use Braspag\CaptureResponse;
 use Braspag\DebitCardPayment;
 use Braspag\CreditCardPayment;
 use Braspag\FraudAnalysisReplyData;
@@ -30,7 +25,7 @@ use Braspag\FraudAnalysisReplyData;
  */
 class Sales
 {
-    function __construct(){
+    function __construct()
         $this->headers = array(
                 'MerchantId' => Braspag::getMerchantId(),
                 'MerchantKey' => Braspag::getMerchantKey()
@@ -217,13 +212,8 @@ class Sales
             ->sendsJson()
             ->addHeaders($this->headers)
             ->send();
-        
         if($response->code == HttpStatus::Ok){    
-            $sale = new Sale();
-            $sale->merchantOrderId = $response->body->MerchantOrderId;
-            $sale->customer = $this->parseCustomer($response->body->Customer);
-            $sale->payment = $this->parsePayment($response->body->Payment);
-            return $sale;
+            return new Sale(json_decode($response->raw_body, true));
             
         }elseif($response->code == HttpStatus::BadRequest){            
             return Utils::getBadRequestErros($response->body);            
@@ -254,99 +244,4 @@ class Sales
         
         return $linkCollection;
     }
-    
-    private function parseCustomer($apiCustomer){
-        $customer = new Customer();
-        $customer->name = $apiCustomer->Name;
-        $customer->email = Utils::getResponseValue($apiCustomer, 'Email');
-        $customer->identity = Utils::getResponseValue($apiCustomer, 'Identity');
-        $customer->identityType = Utils::getResponseValue($apiCustomer, 'IdentityType');
-        $customer->birthDate = Utils::getResponseValue($apiCustomer, 'Birthdate');
-        
-        $apiAddress = Utils::getResponseValue($apiCustomer, 'Address');
-        if($apiAddress != null){
-            $address = new Address();
-            $address->country = $apiAddress->Country;
-            $customer->city = Utils::getResponseValue($apiAddress, 'City');
-            $customer->complement = Utils::getResponseValue($apiAddress, 'Complement');
-            $customer->district = Utils::getResponseValue($apiAddress, 'District');
-            $customer->number = Utils::getResponseValue($apiAddress, 'Number');
-            $customer->state = Utils::getResponseValue($apiAddress, 'State');
-            $customer->street = Utils::getResponseValue($apiAddress, 'Street');
-            $customer->zipCode = Utils::getResponseValue($apiAddress, 'ZipCode');
-            $customer->address = $address;
-        }
-        
-        return $customer;
-    }
-    
-    private function parsePayment($apiPayment){
-        $payment = new Payment();
-
-        if($apiPayment->Type == 'CreditCard'){
-            $payment = new CreditCardPayment();
-            $this->parseCreditAndDebitPayment($payment, $apiPayment, $apiPayment->CreditCard);
-            
-            $payment->capture = $apiPayment->Capture;
-            $payment->authenticate = $apiPayment->Authenticate;
-            $payment->installments = $apiPayment->Installments;
-            
-        }elseif($apiPayment->Type == 'DebitCard'){
-            $payment = new DebitCardPayment();
-            $this->parseCreditAndDebitPayment($payment, $apiPayment, $apiPayment->DebitCard);
-
-        }elseif($apiPayment->Type == 'Boleto') {
-            $payment = new BoletoPayment();    
-
-            $payment->url = Utils::getResponseValue($apiPayment, 'Url');
-            $payment->barCodeNumber = Utils::getResponseValue($apiPayment, 'BarCodeNumber');
-            $payment->digitableLine = Utils::getResponseValue($apiPayment, 'DigitableLine');
-            $payment->boletoNumber = Utils::getResponseValue($apiPayment, 'BoletoNumber');
-            
-            $payment->instructions = Utils::getResponseValue($apiPayment, 'Instructions');
-            $payment->expirationDate = Utils::getResponseValue($apiPayment, 'ExpirationDate');
-            $payment->demonstrative = Utils::getResponseValue($apiPayment, 'Demonstrative');
-            $payment->assignor = Utils::getResponseValue($apiPayment, 'Assignor');
-            $payment->address = Utils::getResponseValue($apiPayment, 'Address');
-            $payment->identification = Utils::getResponseValue($apiPayment, 'Identification');
-
-        }elseif($apiPayment->Type == 'EletronicTransfer'){
-            $payment->url = Utils::getResponseValue($apiPayment, 'Url');
-        }
-        
-        $payment->paymentId = $apiPayment->PaymentId;
-        $payment->amount = $apiPayment->Amount;
-        $payment->capturedAmount = Utils::getResponseValue($apiPayment, 'CapturedAmount');
-        $payment->capturedAmount = Utils::getResponseValue($apiPayment, 'VoidedAmount');
-        $payment->receivedDate = $apiPayment->ReceivedDate;
-        $payment->capturedDate = Utils::getResponseValue($apiPayment, 'CapturedDate');
-        $payment->voidedDate = Utils::getResponseValue($apiPayment, 'VoidedDate');
-        $payment->country = $apiPayment->Country;
-        $payment->currency = $apiPayment->Currency;
-        $payment->provider = $apiPayment->Provider;
-        $payment->status = $apiPayment->Status;
-        $payment->reasonCode = $apiPayment->ReasonCode;
-        $payment->reasonMessage = $apiPayment->ReasonMessage;
-        $payment->providerReturnCode = Utils::getResponseValue($apiPayment, 'ProviderReturnCode');
-        $payment->providerReturnMessage = Utils::getResponseValue($apiPayment, 'ProviderReturnMessage');
-        $payment->returnUrl = Utils::getResponseValue($apiPayment, 'ReturnUrl');        
-        $payment->links = $this->parseLinks($apiPayment->Links);
-        
-        return $payment;
-    }
-    
-    private function parseCreditAndDebitPayment($payment, $apiPayment, $card){
-        $payment->authenticationUrl = Utils::getResponseValue($apiPayment, 'AuthenticationUrl');
-        $payment->authorizationCode = Utils::getResponseValue($apiPayment, 'AuthorizationCode');
-        $payment->acquirerTransactionId = Utils::getResponseValue($apiPayment, 'AcquirerTransactionId');
-        $payment->proofOfSale = Utils::getResponseValue($apiPayment, 'ProofOfSale');
-        $payment->eci = Utils::getResponseValue($apiPayment, 'Eci');
-
-        $parsedCard = new Card();
-        $parsedCard->brand = $card->Brand;
-        $parsedCard->cardNumber = $card->CardNumber;
-        $parsedCard->expirationDate = $card->ExpirationDate;
-        $parsedCard->holder = $card->Holder;
-        $payment->creditCard = $parsedCard;
-    }  
 }

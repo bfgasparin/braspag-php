@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class Card
+class Card extends Model
 {
     public $cardNumber;
     public $holder;

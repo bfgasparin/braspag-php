@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class Payment
+class Payment extends Model
 {
     public $paymentId;
     public $type;
@@ -26,8 +26,26 @@ class Payment
     public $links;
     public $recurrentPayment;
     
-    public function __construct(){
+    public function __construct(array $params = []){
         $this->country = Braspag::$defaultCountry;
         $this->currency = Braspag::$defaultCurrency;
+
+        parent::__construct($params);
+    }
+
+    protected function convertToModel($key, $params)
+    { 
+        $property = [];
+        if ($key === 'links') {
+
+            $types = $this->getTypes();
+            foreach ($params as $link) {
+                $property[] = new $types['link']($link);
+            }
+
+            return $property;
+        }
+
+        return parent::convertToModel($key, $params);
     }
 }

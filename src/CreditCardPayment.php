@@ -19,10 +19,12 @@ class CreditCardPayment extends Payment
     public $eci;
     public $fraudAnalysis;
     
-    public function __construct(){
+    public function __construct(array $params = []){
         $this->type = "CreditCard";
         $this->authenticate = Braspag::$defaultAuthenticate;
         $this->capture = Braspag::$defaultCapture;
         $this->interest = Braspag::$defaultInterest;
+
+        parent::__construct($params);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Braspag;
 
-class Customer
+class Customer extends Model
 {
     public $name;
     public $identity;
     public $identityType;
     public $email;
-    public $birthDate;
+    public $birthdate;
     
     public $address;
 }
