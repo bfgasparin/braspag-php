@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class FraudAnalysisReplyData
+class FraudAnalysisReplyData extends Model
 {
     public $addressInfoCode;
     public $factorCode;

@@ -2,7 +2,7 @@
 
 namespace Braspag\Http;
 
-use Httpful\Request;
+use Httpfull\Request;
 
 /**
  * Provide services to manage recurrencies

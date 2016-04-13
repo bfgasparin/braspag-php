@@ -2,7 +2,8 @@
 
 namespace Braspag;
 
-class CartItem {
+class CartItem extends Model
+{
 
 	public $giftCategory;
 	public $hostHedge;

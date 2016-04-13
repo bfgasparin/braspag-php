@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class Link
+class Link extends Model
 {
     public $method;
     public $rel;

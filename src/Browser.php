@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class Browser {
+class Browser extends Model{
 
 	public $cookiesAccepted;
 	public $email;

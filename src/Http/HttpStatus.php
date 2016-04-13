@@ -1,6 +1,6 @@
 <?php
 
-namespace Braspag;
+namespace Braspag\Http;
 
 class HttpStatus {
 	const Ok = 200;

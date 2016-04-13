@@ -9,7 +9,7 @@ namespace Braspag;
  * @author interatia
  */
 
-class BoletoPayment extends BraspagPayment
+class BoletoPayment extends Payment
 {
     public $address;
     public $assignor;
@@ -22,8 +22,10 @@ class BoletoPayment extends BraspagPayment
     public $instructions;
     public $url;
     
-    public function __construct(){
+    public function __construct(array $params = []){
         $this->type = "Boleto";        
+
+        parent::__construct($params);
     }
 }
 

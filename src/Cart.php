@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class Cart {
+class Cart extends Model{
 
 	public $isGift;
 	public $returnsAccepted;

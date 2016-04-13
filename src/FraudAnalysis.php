@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class FraudAnalysis {
+class FraudAnalysis extends Model {
 
 	public $sequence;
 	public $sequenceCriteria;
@@ -17,8 +17,10 @@ class FraudAnalysis {
 
     public $replyData;
 
-    public function __construct(){
+    public function __construct(array $params = []){
         $this->sequence = Braspag::$defaultSequence;
         $this->sequenceCriteria = Braspag::$defaultSequenceCriteria;
+
+        parent::__construct($params);
     }
 }

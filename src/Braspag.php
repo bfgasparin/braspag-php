@@ -6,8 +6,8 @@ class Braspag
 {
     public static $merchantId;
     public static $merchantKey;
-	public static $apiBase = 'https://braspag.com.br/v2/';
-    public static $apiQueryBase = 'https://apiquery.braspag.com.br/v2/';
+	public static $apiBase = 'https://apihomolog.braspag.com.br/v2/';
+    public static $apiQueryBase = 'https://apiqueryhomolog.braspag.com.br/v2/';
     public static $defaultCurrency = 'BRL';
     public static $defaultCountry = 'BRA';
     public static $defaultInterest = 'ByMerchant';

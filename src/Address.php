@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-class Address
+class Address extends Model
 {
     public $street;
     public $number;
