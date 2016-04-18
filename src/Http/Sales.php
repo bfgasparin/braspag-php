@@ -25,11 +25,11 @@ use Braspag\FraudAnalysisReplyData;
  */
 class Sales
 {
-    public function __construct() 
+    public function __construct($merchantId = null, $merchantKey = null)
     {
         $this->headers = [
-            'MerchantId' => Braspag::getMerchantId(),
-            'MerchantKey' => Braspag::getMerchantKey()
+            'MerchantId' => is_null($merchantId) ? Braspag::getMerchantId() : $merchantId,
+            'MerchantKey' => is_null($merchantKey) ? Braspag::getMerchantKey() : $merchantKey
         ];
     }
     
