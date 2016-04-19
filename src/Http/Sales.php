@@ -124,7 +124,7 @@ class Sales
             
             return $sale;
         }elseif($response->code == HttpStatus::BadRequest){          
-            return Utils::getBadRequestErros($response->body);             
+            Utils::handleApiError($response);             
         }  
         
         return $response->code;
@@ -160,7 +160,7 @@ class Sales
             return $captureResponse;
             
         }elseif($response->code == HttpStatus::BadRequest){            
-            return Utils::getBadRequestErros($response->body);            
+            Utils::handleApiError($response);            
         }   
         
         return $response->code;
@@ -196,12 +196,12 @@ class Sales
             return $voidResponse;
             
         }elseif($response->code == HttpStatus::BadRequest){            
-            return Utils::getBadRequestErros($response->body);            
+            Utils::handleApiError($response);            
         }   
         
         return $response->code;
     }    
-    
+ 
     /**
      * Gets a sale
      * @param GUID $paymentId 
@@ -216,10 +216,10 @@ class Sales
         if($response->code == HttpStatus::Ok){    
             return new Sale(json_decode($response->raw_body, true));
             
-        }elseif($response->code == HttpStatus::BadRequest){            
-            return Utils::getBadRequestErros($response->body);            
+        }elseif($response->code == HttpStatus::BadRequest){   
+            Utils::handleApiError($response);            
         }   
-        
+                
         return $response->code;
     }
     

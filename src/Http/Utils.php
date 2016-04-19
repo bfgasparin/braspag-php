@@ -2,6 +2,8 @@
 
 namespace Braspag\Http;
 
+use Braspag\Http\Exception\ApiException;
+
 /**
  * Methods used across services
  *
@@ -13,20 +15,20 @@ class Utils
         return property_exists($from, $propName) ? $from->$propName : null;
     }
     
-    public static function getBadRequestErros($errors){
-        
-        $badRequestErrors = array();
-        
-        foreach ($errors as $e)
-        {
-            $error = new Error();
-            $error->code = $e->Code;
-            $error->message = $e->Message;
-            
-            array_push($badRequestErrors, $error);
-        }  
-        
-        return $badRequestErrors;
+    public static function handleApiError($response)
+    {
+        if($response->code !== HttpStatus::BadRequest){
+            return;
+        }
+
+        $errors = $response->body;
+        if (is_array($errors)){
+            $error = $errors[0];
+        }else{
+            $error = $errors;
+
+        }
+        throw new ApiException($error->Message, isset($e->Code) ? $e->Code: null);
     }
 
     /**     
