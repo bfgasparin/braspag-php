@@ -35,7 +35,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -56,7 +56,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -79,7 +79,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -102,7 +102,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -123,7 +123,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -144,7 +144,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -165,7 +165,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -184,7 +184,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
@@ -203,7 +203,7 @@ class RecurrentSales
             ->send();
 
         if($response->code == HttpStatus::BadRequest){
-            return Utils::getBadRequestErros($response->body);
+            Utils::handleApiError($response);
         }
 
         return $response->code;
