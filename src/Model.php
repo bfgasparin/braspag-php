@@ -2,7 +2,7 @@
 
 namespace Braspag;
 
-abstract class Model
+abstract class Model implements Arrayable
 {
 	public function __construct(array $params = [])
 	{
@@ -50,5 +50,25 @@ abstract class Model
 	        'browser' => 'Braspag\\Browser',
 	        'passenger' => 'Braspag\\Passenger'
    		];	
+	}
+
+	public function toArray()
+	{	
+		$attributes = get_object_vars($this);
+
+		return $this->convertAttributesToArray($attributes);
+	}
+
+	protected function convertAttributesToArray($array) : array
+	{
+		foreach ($array as $key => $value) {
+			if (is_object($value)) {
+				$array[$key] = $value->toArray();
+			}else if (is_array($value)) {
+				$array[$key] = $this->convertAttributesToArray($value);
+			}
+		}	
+
+		return $array;
 	}
 }
