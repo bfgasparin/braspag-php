@@ -17,7 +17,9 @@ class CreditCardPayment extends Payment
     public $acquirerTransactionId;
     public $softDescriptor;
     public $eci;
-    public $fraudAnalysis;
+    public $fraudAnalysis;    
+    public $sentOrderId;
+    public $providerDescription;
     
     public function __construct(array $params = []){
         $this->type = "CreditCard";

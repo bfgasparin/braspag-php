@@ -48,7 +48,8 @@ abstract class Model implements Arrayable
 	        'fraudAnalysis' => 'Braspag\\FraudAnalysis',
 	        'replyData' => 'Braspag\\FraudAnalysisReplyData',
 	        'browser' => 'Braspag\\Browser',
-	        'passenger' => 'Braspag\\Passenger'
+	        'passenger' => 'Braspag\\Passenger',
+			'merchant' => 'Braspag\\Merchant'
    		];	
 	}
 

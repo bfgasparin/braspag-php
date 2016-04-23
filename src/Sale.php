@@ -6,7 +6,8 @@ class Sale extends Model
 {
     public $merchantOrderId;
     public $customer;
-    public $payment;   
+	public $payment; 
+	public $merchant; 
 
     protected function convertToModel($key, $params)
 	{

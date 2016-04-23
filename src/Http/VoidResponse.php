@@ -7,5 +7,7 @@ class VoidResponse
     public $status;
     public $reasonCode;
     public $reasonMessage;
+    public $providerResponseCode;
+    public $providerResponseMessage;
     public $links;
 }
